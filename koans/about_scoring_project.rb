@@ -29,8 +29,32 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 #
 # Your goal is to write the score method.
 
+def count(dice, number)
+  count = dice.inject(0) do |count, die|
+    if die==number
+      count+=1 
+    else
+      count
+    end
+  end
+  count||=0
+end
+
 def score(dice)
-  # You need to write this method
+  score=0
+  (1..6).each do |i|
+    count=count(dice, i)
+    if i==1
+      score +=count/3*1000
+      score +=(count%3*100)
+    else
+      score +=i *(count/3)*100
+    end
+    if i==5
+      score +=count%3*50
+    end
+  end
+  score
 end
 
 class AboutScoringProject < EdgeCase::Koan
