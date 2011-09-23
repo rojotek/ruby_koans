@@ -30,14 +30,7 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 # Your goal is to write the score method.
 
 def count(dice, number)
-  count = dice.inject(0) do |count, die|
-    if die==number
-      count+=1 
-    else
-      count
-    end
-  end
-  count||=0
+  dice.count(number)
 end
 
 def score(dice)
